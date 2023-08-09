@@ -29,7 +29,7 @@ export default function SignUp() {
       await axios.post(`${import.meta.env.VITE_API_URL}/signup`, saveData);
       alert("Usuário cadastrado com sucesso");
       console.log("Request successful");
-      navigate("/signin");
+      navigate("/");
     } catch (error) {
       console.log("Axios Error:", error);
       console.log("Response Data:", error.response.data);
