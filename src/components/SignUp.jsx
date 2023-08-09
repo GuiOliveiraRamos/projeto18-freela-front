@@ -36,74 +36,95 @@ export default function SignUp() {
     }
   };
   return (
-    <Container>
-      <Forms>
-        <h1>Cadastro</h1>
-        <label htmlFor="name">
-          <input
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            type="text"
-            placeholder="Nome"
-            required
-          ></input>
-        </label>
-        <label htmlFor="Telefone">
-          <input
-            onChange={(e) => setPhone(e.target.value)}
-            value={phone}
-            type="number"
-            placeholder="Telefone"
-            required
-          ></input>
-        </label>
-        <label htmlFor="CPF">
-          <input
-            onChange={(e) => setCpf(e.target.value)}
-            value={cpf}
-            type="number"
-            placeholder="CPF"
-            required
-          ></input>
-        </label>
-        <label htmlFor="email">
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            type="email"
-            placeholder="Email"
-            required
-          ></input>
-        </label>
-        <label htmlFor="password">
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            type="password"
-            placeholder="Senha"
-            required
-          ></input>
-        </label>
-        <label htmlFor="confirmPassword">
-          <input
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            value={confirmPassword}
-            type="password"
-            placeholder="Confirme sua senha"
-            required
-          ></input>
-        </label>
-        <button type="submit" onClick={handleSignUp}>
-          Cadastrar
-        </button>
-      </Forms>
-    </Container>
+    <BackgroundContainer>
+      <BackgroundImage />
+      <Container>
+        <Forms>
+          <h1>Cadastro</h1>
+          <label htmlFor="name">
+            <input
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              type="text"
+              placeholder="Nome"
+              required
+            ></input>
+          </label>
+          <label htmlFor="Telefone">
+            <input
+              onChange={(e) => setPhone(e.target.value)}
+              value={phone}
+              type="number"
+              placeholder="Telefone"
+              required
+            ></input>
+          </label>
+          <label htmlFor="CPF">
+            <input
+              onChange={(e) => setCpf(e.target.value)}
+              value={cpf}
+              type="number"
+              placeholder="CPF"
+              required
+            ></input>
+          </label>
+          <label htmlFor="email">
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              type="email"
+              placeholder="Email"
+              required
+            ></input>
+          </label>
+          <label htmlFor="password">
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type="password"
+              placeholder="Senha"
+              required
+            ></input>
+          </label>
+          <label htmlFor="confirmPassword">
+            <input
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={confirmPassword}
+              type="password"
+              placeholder="Confirme sua senha"
+              required
+            ></input>
+          </label>
+          <button type="submit" onClick={handleSignUp}>
+            Cadastrar
+          </button>
+        </Forms>
+      </Container>
+    </BackgroundContainer>
   );
 }
+const BackgroundContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: relative;
+`;
+
+const BackgroundImage = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/11/20/CATS-LOTS-OF-CATS-PAINT-IN-FOCUS-MILLIONS-OF-CATS-47521151-1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+`;
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
+  position: relative;
 `;
 
 const Forms = styled.form`
@@ -113,6 +134,11 @@ const Forms = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  h1 {
+    font-family: Arial;
+    font-size: 50px;
+  }
 
   input {
     margin: 5px;

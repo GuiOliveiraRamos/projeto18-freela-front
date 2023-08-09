@@ -22,31 +22,53 @@ export default function SignIn() {
     navigate("/home");
   };
   return (
-    <Container>
-      <Forms>
-        <h1>Login</h1>
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" onClick={handleSignIn}>
-          Entrar
-        </button>
-        <Link to={"/signup"}>Ainda não possui conta? Cadastre-se</Link>
-      </Forms>
-    </Container>
+    <BackgroundContainer>
+      <BackgroundImage />
+      <Container>
+        <Forms>
+          <h1>Login</h1>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit" onClick={handleSignIn}>
+            Entrar
+          </button>
+          <Link to={"/signup"}>Ainda não possui conta? Cadastre-se</Link>
+        </Forms>
+      </Container>
+    </BackgroundContainer>
   );
 }
+
+const BackgroundContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: relative;
+`;
+
+const BackgroundImage = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/11/20/CATS-LOTS-OF-CATS-PAINT-IN-FOCUS-MILLIONS-OF-CATS-47521151-1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+`;
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
+  position: relative;
 `;
 
 const Forms = styled.form`
