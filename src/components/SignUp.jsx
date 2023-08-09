@@ -12,18 +12,27 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword)
+    console.log("Starting handleSignUp");
+
+    if (password !== confirmPassword) {
+      console.log("Passwords do not match");
+
       return alert("As senhas devem ser iguais");
+    }
 
-    const saveData = { name, phone, cpf, email, password };
-
+    const saveData = { name, phone, cpf, email, password, confirmPassword };
+    console.log("saveData:", saveData);
     try {
-      axios.post(`${import.meta.env.VITE_API_URL}/signup`, saveData);
+      console.log("Sending POST request...");
+      await axios.post(`${import.meta.env.VITE_API_URL}/signup`, saveData);
+      alert("Usuário cadastrado com sucesso");
+      console.log("Request successful");
       navigate("/signin");
     } catch (error) {
-      console.log(error);
+      console.log("Axios Error:", error);
+      console.log("Response Data:", error.response.data);
     }
   };
   return (
@@ -84,11 +93,9 @@ export default function SignUp() {
             required
           ></input>
         </label>
-        <label>
-          <button type="submit" onSubmit={handleSignUp}>
-            Cadastrar
-          </button>
-        </label>
+        <button type="submit" onClick={handleSignUp}>
+          Cadastrar
+        </button>
       </Forms>
     </Container>
   );
