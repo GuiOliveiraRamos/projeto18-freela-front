@@ -19,6 +19,7 @@ export default function Header() {
       <Content>
         <p onClick={() => navigate("/homepage")}>Home</p>
         <p onClick={() => navigate("/miaudelos")}>Miaudelos</p>
+        <p onClick={() => navigate("/profile")}>Meu perfil</p>
         <p>Sobre nós</p>
         <p>Contato</p>
       </Content>
@@ -54,7 +55,7 @@ const Title = styled.div`
 `;
 
 const Content = styled.div`
-  width: 500px;
+  width: 600px;
   display: flex;
   justify-content: space-between;
   p {

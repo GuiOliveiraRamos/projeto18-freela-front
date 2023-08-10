@@ -43,7 +43,7 @@ const ContainerPage = styled.div`
 `;
 
 const Title = styled.div`
-  padding: 70px 0 70px 0;
+  padding: 60px 0 60px 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -67,7 +67,7 @@ const Card = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 20px;
-  border: 2px solid #a1572f;
+  border: 2px solid black;
   img {
     padding-top: 10px;
     width: 150px;
