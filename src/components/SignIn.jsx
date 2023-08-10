@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import Header from "./Header";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -25,8 +26,9 @@ export default function SignIn() {
     <BackgroundContainer>
       <BackgroundImage />
       <Container>
+        <Header />
         <Forms>
-          <h1>Login</h1>
+          <h1>LOGIN</h1>
           <input
             type="email"
             placeholder="Email"
@@ -59,7 +61,7 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/11/20/CATS-LOTS-OF-CATS-PAINT-IN-FOCUS-MILLIONS-OF-CATS-47521151-1.png");
+  background-image: url("https://i.pinimg.com/originals/1e/7e/17/1e7e173a2a6c4cfef81755042bb84f7d.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   opacity: 0.5;

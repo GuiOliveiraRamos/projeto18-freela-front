@@ -40,7 +40,7 @@ export default function SignUp() {
       <BackgroundImage />
       <Container>
         <Forms>
-          <h1>Cadastro</h1>
+          <h1>CADASTRO</h1>
           <label htmlFor="name">
             <input
               onChange={(e) => setName(e.target.value)}
