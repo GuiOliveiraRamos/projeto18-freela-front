@@ -52,7 +52,6 @@ export default function SignIn() {
 const BackgroundContainer = styled.div`
   width: 100%;
   height: 100vh;
-  position: relative;
 `;
 
 const BackgroundImage = styled.div`

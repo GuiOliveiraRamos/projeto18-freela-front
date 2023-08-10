@@ -4,8 +4,10 @@ import {
   AiOutlineTwitter,
   AiOutlineInstagram,
 } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <Container>
       <Title>
@@ -15,8 +17,8 @@ export default function Header() {
         </h1>
       </Title>
       <Content>
-        <p>Home</p>
-        <p>Miaudelos</p>
+        <p onClick={() => navigate("/homepage")}>Home</p>
+        <p onClick={() => navigate("/miaudelos")}>Miaudelos</p>
         <p>Sobre nós</p>
         <p>Contato</p>
       </Content>
@@ -34,6 +36,11 @@ const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   background-color: #fff2eb;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
 `;
 
 const Title = styled.div`
