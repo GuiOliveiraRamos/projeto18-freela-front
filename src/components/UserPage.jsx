@@ -11,6 +11,7 @@ export default function Profile() {
   const [miaudelos, setMiaudelos] = useState([]);
   const [showVacationModal, setShowVacationModal] = useState(false);
   const [selectedVacationDate, setSelectedVacationDate] = useState(new Date());
+  const [selectedMiaudeloId, setSelectedMiaudeloId] = useState(null);
   const navigate = useNavigate();
   const sessionId = localStorage.getItem("sessionId");
 
@@ -62,6 +63,31 @@ export default function Profile() {
     }
   };
 
+  const handleVacationConfirm = async (miaudeloId, vacationDate) => {
+    try {
+      await axios.patch(
+        `${import.meta.env.VITE_API_URL}/my-miaudelos/${miaudeloId}/vacation`,
+        { vacationDate },
+        {
+          headers: {
+            Authorization: sessionId,
+          },
+        }
+      );
+
+      const updatedMiaudelos = miaudelos.map((miaudelo) => {
+        if (miaudelo.id === miaudeloId) {
+          return { ...miaudelo, return_date: vacationDate };
+        }
+        return miaudelo;
+      });
+      setMiaudelos(updatedMiaudelos);
+    } catch (error) {
+      console.log("Axios Error:", error);
+      console.log("Response Data:", error.response.data);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -88,7 +114,14 @@ export default function Profile() {
                 <h3>{miaudelo.description}</h3>
                 <div>
                   <p>VER MAIS</p>
-                  <p onClick={() => setShowVacationModal(true)}>FERIAS</p>
+                  <p
+                    onClick={() => {
+                      setSelectedMiaudeloId(miaudelo.id);
+                      setShowVacationModal(true);
+                    }}
+                  >
+                    FERIAS
+                  </p>
                   <p onClick={() => handleDelete(miaudelo.id)}>EXCLUIR</p>
                 </div>
               </Card>
@@ -98,6 +131,7 @@ export default function Profile() {
                 show={showVacationModal}
                 onClose={() => setShowVacationModal(false)}
                 onConfirm={(date) => {
+                  handleVacationConfirm(selectedMiaudeloId, date);
                   setSelectedVacationDate(date);
                   setShowVacationModal(false);
                 }}
