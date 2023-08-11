@@ -14,13 +14,19 @@ export default function SignIn() {
     const loginData = { email, password };
     console.log("loginData:", loginData);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/`, loginData);
-      navigate("/home");
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/`,
+        loginData
+      );
+      console.log(response.data);
+      const sessionId = response.data.sessionId;
+
+      localStorage.setItem("sessionId", sessionId);
+      navigate("/homepage");
     } catch (error) {
       console.log("Axios Error:", error);
       console.log("Response Data:", error.response.data);
     }
-    navigate("/home");
   };
   return (
     <BackgroundContainer>

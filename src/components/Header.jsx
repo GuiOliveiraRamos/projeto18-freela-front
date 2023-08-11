@@ -19,7 +19,7 @@ export default function Header() {
       <Content>
         <p onClick={() => navigate("/homepage")}>Home</p>
         <p onClick={() => navigate("/miaudelos")}>Miaudelos</p>
-        <p onClick={() => navigate("/profile")}>Meu perfil</p>
+        <p onClick={() => navigate("/my-miaudelos")}>Meu perfil</p>
         <p>Sobre nós</p>
         <p>Contato</p>
       </Content>

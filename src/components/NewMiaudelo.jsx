@@ -2,20 +2,29 @@ import { useState } from "react";
 import Header from "./Header";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function NewMiaudelo() {
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
-
+  const sessionId = localStorage.getItem("sessionId");
   const handleSubmit = async (e) => {
     e.preventDefault();
     const saveData = { image, name, description };
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/miaudelos`, saveData);
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/new-miaudelo`,
+        saveData,
+        {
+          headers: {
+            Authorization: sessionId,
+          },
+        }
+      );
       alert("Miaudelo cadastrado com sucesso");
-      navigate("/meus-miaudelos");
+      navigate("/my-miaudelos");
     } catch (err) {
       console.log("Axios Error:", err);
       console.log("Response Data:", err.response.data);

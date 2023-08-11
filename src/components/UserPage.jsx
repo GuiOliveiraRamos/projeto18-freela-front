@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Profile() {
   const [miaudelos, setMiaudelos] = useState([]);
   const navigate = useNavigate();
 
-  const handleAddMiaudelo = () => {
-    navigate("/new-miaudelo");
-  };
+  useEffect(() => {
+    const sessionId = localStorage.getItem("sessionId");
+
+    if (!sessionId) return navigate("/");
+
+    console.log("sessionId:", sessionId);
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/my-miaudelos`, {
+        headers: {
+          Authorization: sessionId,
+        },
+      })
+      .then((response) => {
+        console.log("Response Data:", response.data);
+        setMiaudelos(response.data);
+      })
+      .catch((error) => {
+        console.log("Axios Error:", error);
+        console.log("Response Data:", error.response.data);
+        navigate("/");
+      });
+  }, []);
+
+  console.log("miaudelos:", miaudelos);
+
   return (
     <>
       <Header />
@@ -17,18 +40,25 @@ export default function Profile() {
         <Title>
           <h1>MEUS MIAUDELOS</h1>
         </Title>
+        <Button onClick={() => navigate("/new-miaudelo")}>
+          Adicionar Miaudelo
+        </Button>
         {miaudelos.length === 0 ? (
           <Message>
             <p>Você ainda não possui nenhum Miaudelo</p>
           </Message>
         ) : (
           <MiaudeloList>
-            {miaudelos.map((miaudelo, index) => (
-              <Card key={index}>{}</Card>
+            {miaudelos.map((miaudelo) => (
+              <Card key={miaudelo.id}>
+                <img src={miaudelo.image} alt={`Miaudelo ${miaudelo.id}`} />
+                <h2>{miaudelo.name}</h2>
+                <h3>{miaudelo.description}</h3>
+                <p>VER MAIS</p>
+              </Card>
             ))}
           </MiaudeloList>
         )}
-        <Button onClick={handleAddMiaudelo}>Adicionar Miaudelo</Button>
       </Container>
     </>
   );
@@ -59,9 +89,14 @@ const Message = styled.div`
   }
 `;
 
-const Button = styled.button``;
+const MiaudeloList = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`;
 
-const MiaudeloList = styled.div``;
+const Button = styled.button``;
 
 const Card = styled.div`
   width: 300px;
