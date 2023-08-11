@@ -3,14 +3,18 @@ import styled from "styled-components";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import VacationModal from "./ModalVacation";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Profile() {
   const [miaudelos, setMiaudelos] = useState([]);
+  const [showVacationModal, setShowVacationModal] = useState(false);
+  const [selectedVacationDate, setSelectedVacationDate] = useState(new Date());
   const navigate = useNavigate();
+  const sessionId = localStorage.getItem("sessionId");
 
   useEffect(() => {
-    const sessionId = localStorage.getItem("sessionId");
-
     if (!sessionId) return navigate("/");
 
     console.log("sessionId:", sessionId);
@@ -31,7 +35,32 @@ export default function Profile() {
       });
   }, []);
 
-  console.log("miaudelos:", miaudelos);
+  const handleDelete = async (miaudeloId) => {
+    const shouldDelete = window.confirm(
+      "Tem certeza que deseja deletar esse miaudelo?"
+    );
+
+    if (shouldDelete) {
+      try {
+        await axios.delete(
+          `${import.meta.env.VITE_API_URL}/my-miaudelos/${miaudeloId}`,
+          {
+            headers: {
+              Authorization: sessionId,
+            },
+          }
+        );
+
+        const updatedMiaudelos = miaudelos.filter(
+          (miaudelo) => miaudelo.id !== miaudeloId
+        );
+        setMiaudelos(updatedMiaudelos);
+      } catch (error) {
+        console.log("Axios Error:", error);
+        console.log("Response Data:", error.response.data);
+      }
+    }
+  };
 
   return (
     <>
@@ -40,13 +69,16 @@ export default function Profile() {
         <Title>
           <h1>MEUS MIAUDELOS</h1>
         </Title>
-        <Button onClick={() => navigate("/new-miaudelo")}>
-          Adicionar Miaudelo
-        </Button>
+
         {miaudelos.length === 0 ? (
-          <Message>
-            <p>Você ainda não possui nenhum Miaudelo</p>
-          </Message>
+          <>
+            <Message>
+              <p>Você ainda não possui nenhum Miaudelo</p>
+            </Message>{" "}
+            <Button onClick={() => navigate("/new-miaudelo")}>
+              Adicionar Miaudelo
+            </Button>
+          </>
         ) : (
           <MiaudeloList>
             {miaudelos.map((miaudelo) => (
@@ -54,11 +86,29 @@ export default function Profile() {
                 <img src={miaudelo.image} alt={`Miaudelo ${miaudelo.id}`} />
                 <h2>{miaudelo.name}</h2>
                 <h3>{miaudelo.description}</h3>
-                <p>VER MAIS</p>
+                <div>
+                  <p>VER MAIS</p>
+                  <p onClick={() => setShowVacationModal(true)}>FERIAS</p>
+                  <p onClick={() => handleDelete(miaudelo.id)}>EXCLUIR</p>
+                </div>
               </Card>
             ))}
+            {showVacationModal && (
+              <VacationModal
+                show={showVacationModal}
+                onClose={() => setShowVacationModal(false)}
+                onConfirm={(date) => {
+                  setSelectedVacationDate(date);
+                  setShowVacationModal(false);
+                }}
+                selectedDate={selectedVacationDate}
+              />
+            )}
           </MiaudeloList>
         )}
+        <Button onClick={() => navigate("/new-miaudelo")}>
+          Adicionar Miaudelo
+        </Button>
       </Container>
     </>
   );
@@ -108,7 +158,18 @@ const Card = styled.div`
   border-radius: 20px;
   border: 2px solid black;
   img {
-    padding-top: 10px;
-    width: 150px;
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  div {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    p {
+      cursor: pointer;
+    }
   }
 `;

@@ -1,10 +1,24 @@
 import { styled } from "styled-components";
 import Header from "./Header";
-import gato1 from "../assets/gato1.jpeg";
-import gato2 from "../assets/gato2.jpeg";
 import jorginho from "../assets/jorginho.jpeg";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Miaudelos() {
+  const [miaudelos, setMiaudelos] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/miaudelos`)
+      .then((response) => {
+        setMiaudelos(response.data);
+      })
+      .catch((error) => {
+        console.log("Axios Error:", error);
+        console.log("Response Data:", error.response.data);
+      });
+  }, []);
+
   return (
     <>
       <Header />
@@ -14,23 +28,19 @@ export default function Miaudelos() {
         </Title>
         <ContainerCards>
           <Card>
-            <img src={gato1} />
-            <h2>Nome do gato</h2>
-            <h3>descrição</h3>
-            <p>VER MAIS</p>
-          </Card>
-          <Card>
-            <img src={gato2} />
-            <h2>Nome do gato</h2>
-            <h3>descrição</h3>
-            <p>VER MAIS</p>
-          </Card>
-          <Card>
             <img src={jorginho} />
             <h2>Jorginho</h2>
             <h3>descrição</h3>
             <p>VER MAIS</p>
           </Card>
+          {miaudelos.map((miaudelo) => (
+            <Card key={miaudelo.id}>
+              <img src={miaudelo.image} alt={`Miaudelo ${miaudelo.id}`} />
+              <h2>{miaudelo.name}</h2>
+              <h3>{miaudelo.description}</h3>
+              <p>VER MAIS</p>
+            </Card>
+          ))}
         </ContainerCards>
       </ContainerPage>
     </>
@@ -73,9 +83,6 @@ const Card = styled.div`
     width: 150px;
   }
   &:first-of-type img {
-    width: 107px;
-  }
-  &:nth-of-type(3) img {
     width: 170px;
   }
 `;
