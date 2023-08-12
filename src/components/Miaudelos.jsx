@@ -3,9 +3,11 @@ import Header from "./Header";
 import jorginho from "../assets/jorginho.jpeg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 export default function Miaudelos() {
   const [miaudelos, setMiaudelos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -18,6 +20,10 @@ export default function Miaudelos() {
         console.log("Response Data:", error.response.data);
       });
   }, []);
+
+  const handleShowDetails = (id) => {
+    navigate(`/miaudelos/${id}`);
+  };
 
   return (
     <>
@@ -38,7 +44,7 @@ export default function Miaudelos() {
               <img src={miaudelo.image} alt={`Miaudelo ${miaudelo.id}`} />
               <h2>{miaudelo.name}</h2>
               <h3>{miaudelo.description}</h3>
-              <p>VER MAIS</p>
+              <p onClick={() => handleShowDetails(miaudelo.id)}>VER MAIS</p>
             </Card>
           ))}
         </ContainerCards>
@@ -79,10 +85,18 @@ const Card = styled.div`
   border-radius: 20px;
   border: 2px solid black;
   img {
-    padding-top: 10px;
-    width: 150px;
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
-  &:first-of-type img {
-    width: 170px;
+  div {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    p {
+      cursor: pointer;
+    }
   }
 `;

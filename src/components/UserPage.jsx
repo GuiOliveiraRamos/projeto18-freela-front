@@ -64,10 +64,12 @@ export default function Profile() {
   };
 
   const handleVacationConfirm = async (miaudeloId, vacationDate) => {
+    const newDate = new Date();
+    const stringDate = newDate.toString();
     try {
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/my-miaudelos/${miaudeloId}/vacation`,
-        { vacationDate },
+        { vacationDate: stringDate },
         {
           headers: {
             Authorization: sessionId,
@@ -88,6 +90,15 @@ export default function Profile() {
     }
   };
 
+  const handleShowDetails = (id) => {
+    navigate(`/miaudelos/${id}`);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("sessionId");
+    navigate("/");
+  };
+
   return (
     <>
       <Header />
@@ -101,9 +112,6 @@ export default function Profile() {
             <Message>
               <p>Você ainda não possui nenhum Miaudelo</p>
             </Message>{" "}
-            <Button onClick={() => navigate("/new-miaudelo")}>
-              Adicionar Miaudelo
-            </Button>
           </>
         ) : (
           <MiaudeloList>
@@ -113,7 +121,7 @@ export default function Profile() {
                 <h2>{miaudelo.name}</h2>
                 <h3>{miaudelo.description}</h3>
                 <div>
-                  <p>VER MAIS</p>
+                  <p onClick={() => handleShowDetails(miaudelo.id)}>VER MAIS</p>
                   <p
                     onClick={() => {
                       setSelectedMiaudeloId(miaudelo.id);
@@ -143,6 +151,7 @@ export default function Profile() {
         <Button onClick={() => navigate("/new-miaudelo")}>
           Adicionar Miaudelo
         </Button>
+        <button onClick={handleLogout}>Logout</button>
       </Container>
     </>
   );
