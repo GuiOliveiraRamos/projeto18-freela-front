@@ -28,11 +28,12 @@ const ImageCarousel = ({ images }) => {
 
 const ContainerCarousel = styled.div`
   width: 100%;
-  margin-top: 131px;
+  height: 100%;
+  margin-top: 120px;
   z-index: 1;
   img {
     width: 100%;
-    height: 700px;
+    height: 600px;
     transition: transform 0.3s ease;
 
     &:hover {

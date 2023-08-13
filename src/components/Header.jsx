@@ -39,6 +39,7 @@ const Container = styled.div`
   background-color: #fff2eb;
   position: fixed;
   width: 100%;
+  height: 120px;
   top: 0;
   left: 0;
   z-index: 10;
@@ -49,6 +50,7 @@ const Title = styled.div`
   display: flex;
   text-align: center;
   h1 {
+    font-size: 40px;
     font-family: "Poppins", sans-serif;
     font-weight: 100;
   }

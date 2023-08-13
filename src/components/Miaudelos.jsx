@@ -37,14 +37,18 @@ export default function Miaudelos() {
             <img src={jorginho} />
             <h2>Jorginho</h2>
             <h3>descrição</h3>
-            <p>VER MAIS</p>
+            <div>
+              <p>VER MAIS</p>
+            </div>
           </Card>
           {miaudelos.map((miaudelo) => (
             <Card key={miaudelo.id}>
               <img src={miaudelo.image} alt={`Miaudelo ${miaudelo.id}`} />
               <h2>{miaudelo.name}</h2>
               <h3>{miaudelo.description}</h3>
-              <p onClick={() => handleShowDetails(miaudelo.id)}>VER MAIS</p>
+              <div>
+                <p onClick={() => handleShowDetails(miaudelo.id)}>VER MAIS</p>
+              </div>
             </Card>
           ))}
         </ContainerCards>
@@ -72,10 +76,12 @@ const Title = styled.div`
 
 const ContainerCards = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 `;
 
 const Card = styled.div`
+  margin-bottom: 30px;
   width: 300px;
   height: 400px;
   display: flex;
@@ -83,7 +89,7 @@ const Card = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 20px;
-  border: 2px solid black;
+  border: 1px solid black;
   img {
     width: 100%;
     height: 50%;
@@ -91,11 +97,22 @@ const Card = styled.div`
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
+  h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+  }
+  h3 {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+  }
   div {
     width: 250px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    padding-bottom: 10px;
+
     p {
+      font-family: "Poppins", sans-serif;
       cursor: pointer;
     }
   }

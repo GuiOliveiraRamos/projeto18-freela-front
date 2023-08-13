@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
+import { styled } from "styled-components";
 
 export default function MiaudeloDetails() {
   const { id } = useParams();
@@ -26,13 +27,31 @@ export default function MiaudeloDetails() {
   return (
     <>
       <Header />
-      <div>
-        <h1>{miaudelo.name}</h1>
-        <img src={miaudelo.image} alt={miaudelo.name} />
-        <p>{miaudelo.description}</p>
-        <p>Dono: {miaudelo.dono}</p>
-        <p>Contato: {miaudelo.contato}</p>
-      </div>
+      <Container>
+        <ContainerImage>
+          <img src={miaudelo.image} alt={miaudelo.name} />
+        </ContainerImage>
+        <ContainerInfo>
+          <h1>Nome: {miaudelo.name}</h1>
+          <p>Descrição: {miaudelo.description}</p>
+          <p>Dono: {miaudelo.dono}</p>
+          <p>Contato: {miaudelo.contato}</p>
+        </ContainerInfo>
+      </Container>
     </>
   );
 }
+
+const Container = styled.div`
+  margin-top: 120px;
+  display: flex;
+  background-color: #eccfbf;
+`;
+
+const ContainerImage = styled.div``;
+
+const ContainerInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;

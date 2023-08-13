@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import Header from "./Header";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export default function SignUp() {
   };
   return (
     <BackgroundContainer>
+      <Header />
       <BackgroundImage />
       <Container>
         <Forms>
@@ -95,6 +97,9 @@ export default function SignUp() {
               required
             ></input>
           </label>
+          <h3>
+            Já tem cadastro? <Link to="/">Faça login</Link>
+          </h3>
           <button type="submit" onClick={handleSignUp}>
             Cadastrar
           </button>
@@ -134,21 +139,57 @@ const Forms = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   h1 {
-    font-family: Arial;
-    font-size: 50px;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    margin-bottom: 10px;
   }
 
-  input {
-    margin: 5px;
-    width: 300px;
-    height: 30px;
-    padding: 10px;
+  h3 {
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
   }
+  input {
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    width: 280px;
+    transition: border-color 0.3s;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+
+  input::placeholder {
+    color: #999;
+  }
+
   button {
-    margin: 10px;
-    width: 300px;
-    height: 30px;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff8431;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background-color: #ffc8a3;
+  }
+
+  button:active {
+    transform: scale(0.98);
   }
 `;

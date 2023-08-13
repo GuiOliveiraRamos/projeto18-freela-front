@@ -64,8 +64,8 @@ export default function Profile() {
   };
 
   const handleVacationConfirm = async (miaudeloId, vacationDate) => {
-    const newDate = new Date();
-    const stringDate = newDate.toString();
+    const newDate = new Date(vacationDate);
+    const stringDate = newDate.toISOString();
     try {
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/my-miaudelos/${miaudeloId}/vacation`,
@@ -151,7 +151,7 @@ export default function Profile() {
         <Button onClick={() => navigate("/new-miaudelo")}>
           Adicionar Miaudelo
         </Button>
-        <button onClick={handleLogout}>Logout</button>
+        <Button onClick={handleLogout}>Logout</Button>
       </Container>
     </>
   );
@@ -189,9 +189,29 @@ const MiaudeloList = styled.div`
   flex-wrap: wrap;
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  margin-top: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff8431;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+
+  button:hover {
+    background-color: #ffc8a3;
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+`;
 
 const Card = styled.div`
+  margin-bottom: 30px;
   width: 300px;
   height: 400px;
   display: flex;
@@ -199,7 +219,7 @@ const Card = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 20px;
-  border: 2px solid black;
+  border: 1px solid black;
   img {
     width: 100%;
     height: 50%;
@@ -207,11 +227,23 @@ const Card = styled.div`
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
+  h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+  }
+  h3 {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+  }
   div {
     width: 250px;
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
+
     p {
+      font-family: "Poppins", sans-serif;
+
       cursor: pointer;
     }
   }

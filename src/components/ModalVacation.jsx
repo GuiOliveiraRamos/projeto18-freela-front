@@ -60,5 +60,46 @@ const ModalContent = styled.div`
     font-size: 20px;
     font-family: "Poppins", sans-serif;
     font-weight: 300;
+    margin-bottom: 10px;
+  }
+  input {
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    transition: border-color 0.3s;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+
+  input::placeholder {
+    color: #999;
+  }
+
+  button {
+    width: 200px;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff8431;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background-color: #ffc8a3;
+  }
+
+  button:active {
+    transform: scale(0.98);
   }
 `;
