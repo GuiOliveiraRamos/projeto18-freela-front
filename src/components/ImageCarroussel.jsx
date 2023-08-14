@@ -51,6 +51,11 @@ const SliderContainer = styled.div`
     width: 100%;
     height: 600px;
     object-fit: cover;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
@@ -69,6 +74,14 @@ const TextOverlay = styled.div`
     font-weight: 500;
     font-family: "Poppins", sans-serif;
     text-align: end;
+  }
+
+  @media (max-width: 768px) {
+    p {
+      margin-right: 100px;
+      font-size: 36px;
+      text-align: center;
+    }
   }
 `;
 

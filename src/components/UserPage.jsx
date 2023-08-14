@@ -148,10 +148,10 @@ export default function Profile() {
             )}
           </MiaudeloList>
         )}
-        <Button onClick={() => navigate("/new-miaudelo")}>
+        <button onClick={() => navigate("/new-miaudelo")}>
           Adicionar Miaudelo
-        </Button>
-        <Button onClick={handleLogout}>Logout</Button>
+        </button>
+        <button onClick={handleLogout}>Logout</button>
       </Container>
     </>
   );
@@ -162,6 +162,29 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff8431;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  button:hover {
+    background-color: #ffc8a3;
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+  @media (max-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const Title = styled.div`
@@ -174,11 +197,25 @@ const Title = styled.div`
     font-family: "Poppins", sans-serif;
     font-weight: 300;
   }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 40px;
+      text-align: center;
+    }
+  }
 `;
 const Message = styled.div`
   p {
     font-size: 20px;
     font-family: "Poppins", sans-serif;
+  }
+
+  @media (max-width: 768px) {
+    p {
+      font-size: 15px;
+      text-align: center;
+    }
   }
 `;
 
@@ -187,26 +224,10 @@ const MiaudeloList = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-`;
-
-const Button = styled.button`
-  margin-top: 10px;
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ff8431;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-
-  button:hover {
-    background-color: #ffc8a3;
-  }
-
-  button:active {
-    transform: scale(0.98);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `;
 

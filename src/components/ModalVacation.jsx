@@ -45,6 +45,11 @@ const StyledVacationModal = styled(Modal)`
   align-items: flex-start;
   justify-content: center;
   margin: 40%;
+  @media (max-width: 768px) {
+    align-items: center;
+    margin: 30%;
+    width: 300px;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -91,8 +96,8 @@ const ModalContent = styled.div`
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
   }
 
   button:hover {
@@ -100,6 +105,14 @@ const ModalContent = styled.div`
   }
 
   button:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
+  }
+  @media (max-width: 768px) {
+    h2 {
+      text-align: center;
+    }
+    button {
+      align-items: center;
+    }
   }
 `;

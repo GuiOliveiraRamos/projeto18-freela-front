@@ -77,6 +77,7 @@ const Title = styled.div`
   width: 150px;
   display: flex;
   text-align: center;
+  padding-left: 20px;
   h1 {
     font-size: 40px;
     font-family: "Poppins", sans-serif;
@@ -141,6 +142,7 @@ const SocialMedias = styled.div`
   display: flex;
   justify-content: space-around;
   font-size: 30px;
+  padding-right: 20px;
 
   @media (max-width: 768px) {
     display: none;

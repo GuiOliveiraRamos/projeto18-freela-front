@@ -71,13 +71,26 @@ const Title = styled.div`
     font-size: 60px;
     font-family: "Poppins", sans-serif;
     font-weight: 300;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 40px;
+      text-align: center;
+    }
   }
 `;
 
 const ContainerCards = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
 `;
 
 const Card = styled.div`

@@ -63,13 +63,19 @@ export default function MiaudeloDetails() {
 const Container = styled.div`
   margin-top: 130px;
   display: flex;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ContainerImage = styled.div`
-  width: 40%;
+  width: 41%;
   img {
     width: 100%;
     object-fit: cover;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -90,6 +96,9 @@ const ContainerInfoTitles = styled.div`
   p:nth-of-type(2) {
     margin-bottom: 80px;
   }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ContainerInfo = styled.div`
@@ -102,28 +111,64 @@ const ContainerInfo = styled.div`
   div:nth-of-type(1) {
     height: 10%;
     display: flex;
-    align-items: flex-end;
-    div {
-      padding-bottom: 4px;
-      height: 50%;
+    justify-content: center;
+    p {
+      font-size: 30px;
+      font-weight: 400;
     }
   }
   div:nth-of-type(2) {
-    height: 20%;
-    div {
-      height: 45%;
-      padding-bottom: 30px;
+    p {
+      font-size: 20px;
+      font-weight: 200;
     }
   }
   div:nth-of-type(3) {
-    height: 8%;
+    p {
+      font-size: 20px;
+      font-weight: 400;
+    }
   }
   div:nth-of-type(4) {
-    height: 10%;
+    p {
+      font-size: 20px;
+      font-weight: 400;
+    }
   }
   p {
     font-size: 20px;
     font-family: "Poppins", sans-serif;
     font-weight: 300;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+
+    div:nth-of-type(1) {
+      height: 10%;
+      display: flex;
+      align-items: flex-end;
+      div {
+        padding-bottom: 4px;
+        height: 50%;
+      }
+    }
+    div:nth-of-type(2) {
+      height: 20%;
+      div {
+        height: 45%;
+        padding-bottom: 30px;
+      }
+    }
+    div:nth-of-type(3) {
+      height: 8%;
+    }
+    div:nth-of-type(4) {
+      height: 10%;
+    }
+    p {
+      font-size: 20px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
+    }
   }
 `;
