@@ -111,29 +111,24 @@ const ContainerInfo = styled.div`
   div:nth-of-type(1) {
     height: 10%;
     display: flex;
-    justify-content: center;
-    p {
-      font-size: 30px;
-      font-weight: 400;
+    align-items: flex-end;
+    div {
+      padding-bottom: 4px;
+      height: 50%;
     }
   }
   div:nth-of-type(2) {
-    p {
-      font-size: 20px;
-      font-weight: 200;
+    height: 20%;
+    div {
+      height: 45%;
+      padding-bottom: 30px;
     }
   }
   div:nth-of-type(3) {
-    p {
-      font-size: 20px;
-      font-weight: 400;
-    }
+    height: 8%;
   }
   div:nth-of-type(4) {
-    p {
-      font-size: 20px;
-      font-weight: 400;
-    }
+    height: 10%;
   }
   p {
     font-size: 20px;
@@ -144,26 +139,30 @@ const ContainerInfo = styled.div`
     width: 100%;
 
     div:nth-of-type(1) {
-      height: 10%;
       display: flex;
-      align-items: flex-end;
-      div {
-        padding-bottom: 4px;
-        height: 50%;
+      justify-content: center;
+      p {
+        font-size: 40px;
+        font-weight: 400;
       }
     }
     div:nth-of-type(2) {
-      height: 20%;
-      div {
-        height: 45%;
-        padding-bottom: 30px;
+      p {
+        font-size: 20px;
+        font-weight: 200;
       }
     }
     div:nth-of-type(3) {
-      height: 8%;
+      p {
+        font-size: 20px;
+        font-weight: 400;
+      }
     }
     div:nth-of-type(4) {
-      height: 10%;
+      p {
+        font-size: 20px;
+        font-weight: 400;
+      }
     }
     p {
       font-size: 20px;

@@ -12,7 +12,6 @@ export default function SignIn() {
   const handleSignIn = async (e) => {
     e.preventDefault();
     const loginData = { email, password };
-    console.log("loginData:", loginData);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/`,
@@ -24,8 +23,11 @@ export default function SignIn() {
       localStorage.setItem("sessionId", sessionId);
       navigate("/homepage");
     } catch (error) {
-      console.log("Axios Error:", error);
-      console.log("Response Data:", error.response.data);
+      if (error.response.status === 401) {
+        alert("Usuário ou senha incorretos");
+      } else {
+        alert("Usuário não cadastrado");
+      }
     }
   };
   return (

@@ -15,25 +15,31 @@ export default function SignUp() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    console.log("Starting handleSignUp");
 
     if (password !== confirmPassword) {
       console.log("Passwords do not match");
-
       return alert("As senhas devem ser iguais");
     }
 
     const saveData = { name, phone, cpf, email, password, confirmPassword };
-    console.log("saveData:", saveData);
+
     try {
       console.log("Sending POST request...");
-      await axios.post(`${import.meta.env.VITE_API_URL}/signup`, saveData);
-      alert("Usuário cadastrado com sucesso");
-      console.log("Request successful");
-      navigate("/");
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/signup`,
+        saveData
+      );
+
+      if (response.status === 201) {
+        alert("Usuário cadastrado com sucesso");
+        navigate("/");
+      }
     } catch (error) {
-      console.log("Axios Error:", error);
-      console.log("Response Data:", error.response.data);
+      if (error.response.status === 409) {
+        alert("Usuário já está cadastrado");
+      } else {
+        alert("Verifique seus dados");
+      }
     }
   };
   return (
@@ -146,6 +152,7 @@ const Forms = styled.form`
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     margin-bottom: 30px;
+    margin-top: 60px;
   }
 
   h3 {

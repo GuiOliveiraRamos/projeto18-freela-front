@@ -43,6 +43,9 @@ const ContainerCarousel = styled.div`
   height: 100%;
   margin-top: 120px;
   z-index: 1;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const SliderContainer = styled.div`
