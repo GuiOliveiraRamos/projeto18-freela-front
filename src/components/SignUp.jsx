@@ -120,7 +120,7 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/11/20/CATS-LOTS-OF-CATS-PAINT-IN-FOCUS-MILLIONS-OF-CATS-47521151-1.png");
+  background-image: url("https://i.pinimg.com/originals/1e/7e/17/1e7e173a2a6c4cfef81755042bb84f7d.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   opacity: 0.5;
@@ -145,7 +145,7 @@ const Forms = styled.form`
     font-size: 40px;
     font-family: "Poppins", sans-serif;
     font-weight: 300;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 
   h3 {

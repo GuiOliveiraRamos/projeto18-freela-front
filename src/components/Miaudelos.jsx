@@ -99,11 +99,14 @@ const Card = styled.div`
   }
   h2 {
     font-family: "Poppins", sans-serif;
-    font-size: 30px;
+    font-size: 25px;
+    font-weight: 500;
   }
   h3 {
+    padding: 0 20px 0 20px;
     font-family: "Poppins", sans-serif;
-    font-size: 20px;
+    font-size: 13px;
+    font-weight: 400;
   }
   div {
     width: 250px;
@@ -113,6 +116,8 @@ const Card = styled.div`
 
     p {
       font-family: "Poppins", sans-serif;
+      font-weight: 300;
+      color: #4b4a4a;
       cursor: pointer;
     }
   }

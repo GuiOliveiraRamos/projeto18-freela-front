@@ -31,11 +31,29 @@ export default function MiaudeloDetails() {
         <ContainerImage>
           <img src={miaudelo.image} alt={miaudelo.name} />
         </ContainerImage>
+        <ContainerInfoTitles>
+          <p>Nome:</p>
+          <p>Descrição:</p>
+          <p>Dono:</p>
+          <p>Contato:</p>
+        </ContainerInfoTitles>
         <ContainerInfo>
-          <h1>Nome: {miaudelo.name}</h1>
-          <p>Descrição: {miaudelo.description}</p>
-          <p>Dono: {miaudelo.dono}</p>
-          <p>Contato: {miaudelo.contato}</p>
+          <div>
+            <div>
+              <p>{miaudelo.name}</p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p>{miaudelo.description}</p>
+            </div>
+          </div>
+          <div>
+            <p>{miaudelo.dono}</p>
+          </div>
+          <div>
+            <p>{miaudelo.contato}</p>
+          </div>
         </ContainerInfo>
       </Container>
     </>
@@ -43,15 +61,69 @@ export default function MiaudeloDetails() {
 }
 
 const Container = styled.div`
-  margin-top: 120px;
+  margin-top: 130px;
   display: flex;
-  background-color: #eccfbf;
 `;
 
-const ContainerImage = styled.div``;
+const ContainerImage = styled.div`
+  width: 40%;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+`;
 
-const ContainerInfo = styled.div`
+const ContainerInfoTitles = styled.div`
+  background-color: #eacebe;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
+  width: 10%;
+  padding: 10px;
+  p {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+  }
+  p:nth-of-type(2) {
+    margin-bottom: 80px;
+  }
+`;
+
+const ContainerInfo = styled.div`
+  background-color: #fff2eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 46%;
+  padding: 10px;
+  div:nth-of-type(1) {
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
+    div {
+      padding-bottom: 4px;
+      height: 50%;
+    }
+  }
+  div:nth-of-type(2) {
+    height: 20%;
+    div {
+      height: 45%;
+      padding-bottom: 30px;
+    }
+  }
+  div:nth-of-type(3) {
+    height: 8%;
+  }
+  div:nth-of-type(4) {
+    height: 10%;
+  }
+  p {
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+  }
 `;
