@@ -33,34 +33,23 @@ export default function MiaudeloDetails() {
         </ContainerImage>
 
         <ContainerInfo>
-          <div>
-            <div>
-              <p>
-                <h2>Nome: </h2>
-                {miaudelo.name}
-              </p>
-            </div>
-          </div>
-          <div>
-            <div>
-              <p>
-                <h2>Descrição: </h2>
-                {miaudelo.description}
-              </p>
-            </div>
-          </div>
-          <div>
-            <p>
-              <h2>Nome do dono:</h2>
-              {miaudelo.dono}
-            </p>
-          </div>
-          <div>
-            <p>
-              <h2>Contato:</h2>
-              {miaudelo.contato}
-            </p>
-          </div>
+          <p>
+            <h2>Nome: </h2>
+            {miaudelo.name}
+          </p>
+
+          <p>
+            <h2>Descrição: </h2>
+            {miaudelo.description}
+          </p>
+          <p>
+            <h2>Nome do dono:</h2>
+            {miaudelo.dono}
+          </p>
+          <p>
+            <h2>Contato:</h2>
+            {miaudelo.contato}
+          </p>
         </ContainerInfo>
       </Container>
     </>
@@ -68,17 +57,26 @@ export default function MiaudeloDetails() {
 }
 
 const Container = styled.div`
+  width: 100%;
+  height: 600px;
   margin-top: 130px;
   display: flex;
+  justify-content: center;
   @media (max-width: 768px) {
     flex-direction: column;
   }
 `;
 
 const ContainerImage = styled.div`
-  width: 50%;
+  background-color: #fff2eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 49%;
+  padding: 10px;
   img {
-    width: 80%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
   @media (max-width: 768px) {
@@ -91,8 +89,9 @@ const ContainerInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 50%;
+  width: 49%;
   padding: 10px;
+
   p {
     display: flex;
     margin-top: 25px;

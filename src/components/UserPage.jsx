@@ -207,6 +207,7 @@ const Title = styled.div`
   }
 `;
 const Message = styled.div`
+  margin-bottom: 30px;
   p {
     font-size: 20px;
     font-family: "Poppins", sans-serif;
