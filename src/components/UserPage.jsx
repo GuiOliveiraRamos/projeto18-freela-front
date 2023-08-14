@@ -66,6 +66,7 @@ export default function Profile() {
   const handleVacationConfirm = async (miaudeloId, vacationDate) => {
     const newDate = new Date(vacationDate);
     const stringDate = newDate.toISOString();
+    console.log("Front-end - Received Date:", stringDate);
     try {
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/my-miaudelos/${miaudeloId}/vacation`,

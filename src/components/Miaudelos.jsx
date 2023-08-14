@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
 import Header from "./Header";
-import jorginho from "../assets/jorginho.jpeg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
@@ -33,14 +32,6 @@ export default function Miaudelos() {
           <h1>CONHEÇA NOSSOS MIAUDELOS</h1>
         </Title>
         <ContainerCards>
-          <Card>
-            <img src={jorginho} />
-            <h2>Jorginho</h2>
-            <h3>descrição</h3>
-            <div>
-              <p>VER MAIS</p>
-            </div>
-          </Card>
           {miaudelos.map((miaudelo) => (
             <Card key={miaudelo.id}>
               <img src={miaudelo.image} alt={`Miaudelo ${miaudelo.id}`} />

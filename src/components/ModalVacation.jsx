@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { styled } from "styled-components";
@@ -26,14 +26,14 @@ export default function VacationModal({ show, onClose, onConfirm }) {
           timeCaption="Hora"
           dateFormat="MMMM d, yyyy h:mm aa"
         />
-        <div>
-          <Button variant="secondary" onClick={onClose}>
+        <StyledButton>
+          <button variant="secondary" onClick={onClose}>
             Cancelar
-          </Button>
-          <Button variant="primary" onClick={handleConfirm}>
+          </button>
+          <button variant="primary" onClick={handleConfirm}>
             Confirmar
-          </Button>
-        </div>
+          </button>
+        </StyledButton>
       </ModalContent>
     </StyledVacationModal>
   );
@@ -86,6 +86,17 @@ const ModalContent = styled.div`
     color: #999;
   }
 
+  @media (max-width: 768px) {
+    h2 {
+      text-align: center;
+    }
+    button {
+      align-items: center;
+    }
+  }
+`;
+
+const StyledButton = styled.div`
   button {
     width: 200px;
     margin-top: 10px;
@@ -106,13 +117,5 @@ const ModalContent = styled.div`
 
   button:active {
     transform: scale(0.95);
-  }
-  @media (max-width: 768px) {
-    h2 {
-      text-align: center;
-    }
-    button {
-      align-items: center;
-    }
   }
 `;
